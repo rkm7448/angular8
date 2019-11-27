@@ -8,7 +8,7 @@ jobs:
             - image: circleci/node:10-browsers
         steps:
                 # Checkout the code from the branch into the working_directory
-       - checkout
+           - checkout
                 # Log the current branch
        - run:
            name: Show current branch
@@ -16,8 +16,8 @@ jobs:
                 # Restore local dependencies from cache
        - restore_cache:
            keys:
-           - v1-dependencies-{{ checksum "package-lock.json" }}
-           - v1-dependencies-
+             - v1-dependencies-{{ checksum "package-lock.json" }}
+             - v1-dependencies-
                 # Install project dependencies
         - run:
             name: Install local dependencies
