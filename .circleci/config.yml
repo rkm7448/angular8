@@ -6,13 +6,13 @@ jobs:
         working_directory: ~/project-name
         docker:
             - image: circleci/node:10-browsers
-         steps:
+        steps:
                 # Checkout the code from the branch into the working_directory
-            - checkout
+           - checkout
                 # Log the current branch
        - run:
-         name: Show current branch
-         command: echo ${CIRCLE_BRANCH}
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
                 # Restore local dependencies from cache
        - restore_cache:
            keys:
