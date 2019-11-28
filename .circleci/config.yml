@@ -10,6 +10,11 @@ jobs:
       - run:
           name: install-dependencies
           command: npm install
+                   npm -v
+                   npm install @angular/cli@8.3.6
+                   npm install -g @angular/cli@8.3.6
+                   npm audit fix
+                   npm audit fix --force
       - run:
           name: angular-build
           command: ng -- build --prod --aot --no-progress
