@@ -20,6 +20,6 @@ jobs:
           name: angular-build
           command: npm ng -- build
       - store_artifacts:
-          path: ~/angular8/Artifact.xml
+          path: artifact.xml
           prefix: build
       
