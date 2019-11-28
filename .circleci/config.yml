@@ -23,7 +23,7 @@ jobs:
           name: angular-test
           command: npm test -- --single-run --no-progress
       - store_artifacts:
-          path: test-results.xml
+          path: Artifact
           prefix: tests
       - run:
           name: angular-lint
