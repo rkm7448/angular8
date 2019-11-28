@@ -20,7 +20,7 @@ jobs:
           name: angular-build
           command: npm -- build
       - store_artifacts:
-          path: Artifact
+          path: Artifact.xml
           prefix: build
       - run:
           name: angular-lint
