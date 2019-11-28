@@ -15,7 +15,7 @@ jobs:
           command:  npm install @angular/cli@8.3.6
       - run:
           name: angular-build
-          command: ng -- build
+          command: npm -- build
       - run:
           name: angular-test
           command: npm test -- --single-run --no-progress
