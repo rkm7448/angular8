@@ -18,7 +18,7 @@ jobs:
           command:  npm audit fix --force
       - run:
           name: angular-build
-          command: npm -- build
+          command: npm ng -- build
       - store_artifacts:
           path: ~/angular8/Artifact.xml
           prefix: build
