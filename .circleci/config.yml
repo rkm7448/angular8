@@ -19,12 +19,9 @@ jobs:
       - run:
           name: angular-build
           command: npm -- build
-      - run:
-          name: angular-test
-          command: npm test -- --single-run --no-progress
       - store_artifacts:
           path: Artifact
-          prefix: tests
+          prefix: build
       - run:
           name: angular-lint
           command: npm lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
