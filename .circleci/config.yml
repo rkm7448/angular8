@@ -1,15 +1,34 @@
 --- 
 version: 2
-
-build-test-and-deploy:
-    jobs:
-      - build
-      - test1:
-          requires:
-            - build
-      - test2:
-          requires:
-            - test1
-      - deploy:
-          requires:
-            - test2
+jobs:
+  build:
+    working_directory: ~/angular8
+    docker:
+      - image: circleci/node:6-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install-dependencies
+          command: yarn install
+      - save_cache:
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run:
+          name: angular-build
+          command: yarn ng -- build --prod --aot --no-progress
+      - run:
+          name: angular-test
+          command: yarn test -- --single-run --no-progress
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - run:
+          name: angular-lint
+          command: yarn lint -- --formatters-dir ./tslint-formatters --format junit -o tslint.xml
+      - store_artifacts:
+          path: tslint.xml
+          prefix: lint
