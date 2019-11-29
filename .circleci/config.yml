@@ -13,6 +13,12 @@ jobs:
           name: Install Dependencies
           command: npm install
       - run:
+          name: Install Dependencies
+          command: npm install @angular/cli@8.3.6
+      - run:
+          name: Install Dependencies
+          command: npm audit fix --force    
+      - run:
           name: Build Application
           command: yarn ng build --prod --no-progress
       - persist_to_workspace: 
