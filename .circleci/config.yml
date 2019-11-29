@@ -23,10 +23,7 @@ jobs:
             - node_modules
       - run:
           name: Install Dependencies
-          command: npm install @angular/cli@8.3.6
-      - run:
-          name: Install Dependencies
-          command: npm audit fix --force    
+          command: npm install @angular/cli@8.3.6    
       - run:
           name: Build Application
           command: npm ng build 
