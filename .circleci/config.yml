@@ -29,7 +29,7 @@ jobs:
           command: npm audit fix --force
       - run:
           name: Build Application
-          command: ng build 
+          command: 'ng--build'
       - persist_to_workspace: 
           root: dist
           paths: 
