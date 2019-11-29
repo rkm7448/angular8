@@ -10,8 +10,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Dependencies
+          name: update npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install npm wee
           command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
       - run:
           name: Install Dependencies
           command: npm install @angular/cli@8.3.6
@@ -20,7 +29,7 @@ jobs:
           command: npm audit fix --force    
       - run:
           name: Build Application
-          command: npm ng build --prod --no-progress
+          command: npm ng build 
       - persist_to_workspace: 
           root: dist
           paths: 
