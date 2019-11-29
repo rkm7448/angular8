@@ -15,10 +15,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: npm install @angular/cli@8.3.6
-          
-      - run:
-          name: npm key value
-          command: npm 'package-lock.jason' --key value
       - run:
           name: Install Dependencies
           command: npm audit fix --force    
