@@ -11,9 +11,9 @@ jobs:
           name: Install node_modules with npm
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum ".npmrc" }}
+          key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
-            - ./node_modules
+            - ./.npmrc
       - run:
           name: Install angularcli
           command: sudo npm install -g @angular/cli@latest
