@@ -23,7 +23,7 @@ jobs:
             - node_modules
       - run:
           name: Install Dependencies
-          command: sudo npm link @angular/cli -y
+          command: sudo npm install @angular/cli
       - run:
           name: audit fix
           command: npm audit fix --force
