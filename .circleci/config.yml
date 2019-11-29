@@ -7,22 +7,24 @@ jobs:
       - image: circleci/node:6-browsers
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.npmrc" }}
       - run:
-          name: install-dependencies
+          name: Install node_modules with npm
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.npmrc" }}
+          key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ~/.cache/npm
             - ./node_modules
       - run:
-          name: install-dependencies
-          command:  npm install @angular/cli@8.3.6
+          name: Install angularcli
+          command: sudo npm install -g @angular/cli@latest
       - run:
           name: install-dependencies
           command:  npm audit fix --force
+      - run:
+          name: Run unit tests with karma
+          command: ng test
+      - store_test_results:
+          path: test-results.xml
       - run:
           name: angular-build
           command: npm ng -- build
