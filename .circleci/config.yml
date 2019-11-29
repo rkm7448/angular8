@@ -20,7 +20,7 @@ jobs:
           command: npm audit fix --force    
       - run:
           name: Build Application
-          command: yarn ng build --prod --no-progress
+          command: npm ng build --prod --no-progress
       - persist_to_workspace: 
           root: dist
           paths: 
