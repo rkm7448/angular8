@@ -1,38 +1,31 @@
---- 
+defaults: &defaults
+  working_directory: ~/angular8
+  docker:
+    - image: cyber4all/circleci-aws:node-alpine
+
 version: 2
 jobs:
   build:
-    working_directory: ~/angular8
-    docker:
-      - image: circleci/node:6-browsers
+    <<: *defaults
     steps:
       - checkout
       - run:
-          name: Install node_modules with npm
+          name: Install Dependencies
           command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./.npmrc
       - run:
-          name: Install angularcli
-          command: sudo npm install -g @angular/cli@latest
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./.npmrc
+          name: Build Application
+          command: yarn ng build --prod --no-progress
+      - persist_to_workspace: 
+          root: dist
+          paths: 
+            - ./
+  test:
+    <<: *defaults
+    steps:
+      - checkout
       - run:
-          name: install-dependencies
-          command:  npm audit fix --force
+          name: Install Dependencies
+          command: npm install
       - run:
-          name: Run unit tests with karma
-          command: ng test
-      - store_test_results:
-          path: test-results.xml
-      - run:
-          name: angular-build
-          command: npm ng -- build
-      - store_artifacts:
-          path: artifact.xml
-          prefix: build
-      
+          name: Unit Tests
+          command: npm run test:unit
