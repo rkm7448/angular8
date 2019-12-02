@@ -3,8 +3,7 @@ import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-product-alerts',
-  templateUrl: './product-alerts.component.html',
-  styleUrls: ['./product-alerts.component.css']
+  templateUrl: './product-alerts.component.html'
 })
 export class ProductAlertsComponent implements OnInit {
   @Input() product;

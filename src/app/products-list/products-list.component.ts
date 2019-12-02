@@ -4,8 +4,7 @@ import { products } from '../products';
 
 @Component({
   selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  templateUrl: './products-list.component.html'
 })
 export class ProductsListComponent {
   products = products;
